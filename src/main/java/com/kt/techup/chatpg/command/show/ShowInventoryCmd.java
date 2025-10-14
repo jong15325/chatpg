@@ -1,4 +1,4 @@
-package com.kt.techup.chatpg.command.player;
+package com.kt.techup.chatpg.command.show;
 
 import com.kt.techup.chatpg.command.Command;
 import com.kt.techup.chatpg.common.GameContext;

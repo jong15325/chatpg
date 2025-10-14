@@ -4,7 +4,6 @@ import com.kt.techup.chatpg.command.Command;
 import com.kt.techup.chatpg.player.Player;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
 public class GameContext {
