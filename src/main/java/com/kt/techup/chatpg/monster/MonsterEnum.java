@@ -1,7 +1,9 @@
 package com.kt.techup.chatpg.monster;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Getter
 public enum MonsterEnum {
 
@@ -45,15 +47,6 @@ public enum MonsterEnum {
 	CELESTIAL_DRAGON("천상의 드래곤", 10, 225, 39, 19, 130),
 	PRIMORDIAL_HYDRA("태초의 히드라", 10, 210, 38, 20, 120),
 	RADIANT_PHOENIX("광휘의 피닉스", 10, 198, 36, 18, 110);
-
-	MonsterEnum(String name, int level, int hp, int attack, int defense, int expReward) {
-		this.name = name;
-		this.level = level;
-		this.hp = hp;
-		this.attack = attack;
-		this.defense = defense;
-		this.expReward = expReward;
-	}
 
 	private final String name;
 	private final int level;
