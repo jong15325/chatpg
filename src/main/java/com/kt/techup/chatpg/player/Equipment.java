@@ -1,19 +1,16 @@
 package com.kt.techup.chatpg.player;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Getter
 public class Equipment {
-	String name;
-	int attackBoost;
-	int defenseBoost;
-	int hpBoost;
 
-	public Equipment(String name, int attackBoost, int defenseBoost, int hpBoost) {
-		this.name = name;
-		this.attackBoost = attackBoost;
-		this.defenseBoost = defenseBoost;
-		this.hpBoost = hpBoost;
-	}
+	private final String name;
+	private final int attackBoost;
+	private final int defenseBoost;
+	private final int hpBoost;
+	private final EquipmentEnum type;
 
 }
