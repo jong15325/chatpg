@@ -1,17 +1,23 @@
 package com.kt.techup.chatpg.common;
 
-import com.kt.techup.chatpg.command.Command;
-import com.kt.techup.chatpg.player.Player;
+import com.kt.techup.chatpg.state.GameState;
+import com.kt.techup.chatpg.domain.player.Player;
+import com.kt.techup.chatpg.state.main.MainState;
 
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 public class GameContext {
 
 	private final Player player;
-	private Command currentCommand;
+	private final CommandRegistry commandRegistry;
+	private GameState currentState;
 
-	public GameContext(Player player) {
+
+	public GameContext(Player player, CommandRegistry commandRegistry) {
 		this.player = player;
+		this.commandRegistry = commandRegistry;
+		this.currentState = new MainState();
 	}
+
 }

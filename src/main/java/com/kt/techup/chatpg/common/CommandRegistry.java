@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.kt.techup.chatpg.command.Command;
-import com.kt.techup.chatpg.command.ingame.GoDungeonCmd;
+import com.kt.techup.chatpg.command.move.MoveDungeonCmd;
 import com.kt.techup.chatpg.command.show.ShowEquippedCmd;
 import com.kt.techup.chatpg.command.show.ShowInventoryCmd;
 import com.kt.techup.chatpg.command.show.ShowStatusCmd;
@@ -28,15 +28,11 @@ public class CommandRegistry {
 		//commandMap.put("run", new RunCmd());
 
 		// Game commands
-		commandMap.put("dungeon", new GoDungeonCmd());
+		commandMap.put("dungeon", new MoveDungeonCmd());
 		//commandMap.put("exit", new ExitCmd());
 	}
 
 	public Command getCommand(String key) {
-		return commandMap.get(key);
-	}
-
-	public Command getCommandList(String key) {
 		return commandMap.get(key);
 	}
 }

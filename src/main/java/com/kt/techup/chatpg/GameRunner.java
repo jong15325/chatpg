@@ -10,9 +10,9 @@ import com.kt.techup.chatpg.command.CommandEnum;
 import com.kt.techup.chatpg.common.CommandRegistry;
 import com.kt.techup.chatpg.common.GameContext;
 import com.kt.techup.chatpg.helper.PrintHelper;
-import com.kt.techup.chatpg.player.Equipment;
-import com.kt.techup.chatpg.player.EquipmentEnum;
-import com.kt.techup.chatpg.player.Player;
+import com.kt.techup.chatpg.domain.player.Equipment;
+import com.kt.techup.chatpg.domain.player.EquipmentEnum;
+import com.kt.techup.chatpg.domain.player.Player;
 
 @Component
 public class GameRunner implements CommandLineRunner {
@@ -22,7 +22,6 @@ public class GameRunner implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-
 		Scanner sc = new Scanner(System.in);
 
 		PrintHelper.centerAlignPt("CHATPG에 오신 것을 환영합니다!");
@@ -31,7 +30,7 @@ public class GameRunner implements CommandLineRunner {
 
 		// 플레이어 생성
 		Player player = new Player(playerName, 1, 100, 10, 5);
-		GameContext context = new GameContext(player);
+		GameContext context = new GameContext(player, commandRegistry);
 
 		Equipment weapon = new Equipment("낡은 검", 10, 0, 0, EquipmentEnum.WEAPON);
 		Equipment helmet = new Equipment("가죽 모자", 0, 2, 10, EquipmentEnum.HELMET);
@@ -55,39 +54,34 @@ public class GameRunner implements CommandLineRunner {
 
 		boolean running = true;
 
-		while (running) {
-			PrintHelper.centerAlignPt("아래는 게임 메뉴에요");
-			PrintHelper.centerAlignPt("진행할 행동을 아래 보기처럼 입력해주세요");
+		PrintHelper.centerAlignPt("아래는 게임 메뉴에요");
+		PrintHelper.centerAlignPt("진행할 행동을 아래 보기처럼 입력해주세요");
 
-			String filterType = "main";
-			for (CommandEnum commandEnum : CommandEnum.values()) {
-				if (commandEnum.getType().equalsIgnoreCase(filterType)) {
-					PrintHelper.centerAlignPt(
-						"[ "+ commandEnum.getCommand() +" ] -> " +
-							commandEnum.getDescription()
-					);
-				}
+		String filterType = "main";
+		for (CommandEnum commandEnum : CommandEnum.values()) {
+			if (commandEnum.getType().equalsIgnoreCase(filterType)) {
+				PrintHelper.centerAlignPt(
+					"[ "+ commandEnum.getCommand() +" ] -> " +
+						commandEnum.getDescription()
+				);
 			}
+		}
 
-			PrintHelper.centerAlignPt("무엇을 진행할까요?: ");
+		PrintHelper.centerAlignPt("무엇을 진행할까요?: ");
+
+		while (true) {
+
 			String input = sc.nextLine();
 
-			if ("종료".equalsIgnoreCase(input)) {
-				PrintHelper.centerAlignPt("게임을 종료합니다.");
-				running = false;
-				continue;
-			}
-
-			Command command = commandRegistry.getCommand(input);
-			if (command != null) {
-				command.execute(context, input);
+			// 커맨드로 직접 실행 가능한 커맨드들
+			Command cmd = commandRegistry.getCommand(input);
+			if (cmd != null) {
+				cmd.execute(player, context);
 			} else {
-				PrintHelper.centerAlignPt("존재하지 않는 명령어입니다.");
+				// 상태에서 명령 처리 (세부 입력)
+				context.getCurrentState().handleInput(input, context);
 			}
 
 		}
-
-		sc.close();
 	}
-
 }
