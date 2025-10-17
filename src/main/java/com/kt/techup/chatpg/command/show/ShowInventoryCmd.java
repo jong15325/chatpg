@@ -19,10 +19,9 @@ public class ShowInventoryCmd implements Command {
 	public void execute(Player player, GameContext context) {
 		System.out.println("ShowInventoryCmd");
 
-		context.setCurrentState(StateFactory.getInstance().getState(StateEnum.INVENTORY));
-
 		inventoryService.showInventory(player);
 
+		context.setCurrentState(StateFactory.getInstance().getState(StateEnum.INVENTORY));
 	}
 
 }

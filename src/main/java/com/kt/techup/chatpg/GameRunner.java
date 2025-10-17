@@ -9,15 +9,25 @@ import com.kt.techup.chatpg.command.Command;
 import com.kt.techup.chatpg.command.CommandEnum;
 import com.kt.techup.chatpg.common.CommandRegistry;
 import com.kt.techup.chatpg.common.GameContext;
+import com.kt.techup.chatpg.domain.equipment.Equipment;
+import com.kt.techup.chatpg.domain.item.Item;
+import com.kt.techup.chatpg.domain.item.ItemData;
 import com.kt.techup.chatpg.helper.PrintHelper;
 import com.kt.techup.chatpg.domain.player.Equipment;
 import com.kt.techup.chatpg.domain.player.EquipmentEnum;
 import com.kt.techup.chatpg.domain.player.Player;
+import com.kt.techup.chatpg.service.EquipmentService;
+import com.kt.techup.chatpg.service.InventoryService;
+
+import lombok.RequiredArgsConstructor;
 
 @Component
+@RequiredArgsConstructor
 public class GameRunner implements CommandLineRunner {
 
-	private final CommandRegistry commandRegistry = new CommandRegistry();
+	private final CommandRegistry commandRegistry;
+	private final InventoryService inventoryService;
+	private final EquipmentService equipmentService;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -29,21 +39,15 @@ public class GameRunner implements CommandLineRunner {
 		String playerName = sc.nextLine();
 
 		// 플레이어 생성
-		Player player = new Player(playerName, 1, 100, 10, 5);
+		Player player = new Player(playerName);
 		GameContext context = new GameContext(player, commandRegistry);
 
-		Equipment weapon = new Equipment("낡은 검", 10, 0, 0, EquipmentEnum.WEAPON);
-		Equipment helmet = new Equipment("가죽 모자", 0, 2, 10, EquipmentEnum.HELMET);
-		Equipment armor = new Equipment("가죽 갑옷", 0, 3, 20, EquipmentEnum.ARMOR);
-		Equipment boots = new Equipment("가죽 신발", 0, 1, 5, EquipmentEnum.BOOTS);
-		Equipment accessory = new Equipment("낡은 반지", 5, 0, 10, EquipmentEnum.ACCESSORY);
-
-		// 인벤토리에 장비 추가
-		player.getEquipmentManager().getInventory().add(weapon);
-		player.getEquipmentManager().getInventory().add(helmet);
-		player.getEquipmentManager().getInventory().add(armor);
-		player.getEquipmentManager().getInventory().add(boots);
-		player.getEquipmentManager().getInventory().add(accessory);
+		// 기본 아이템 지급
+		inventoryService.addItem(player, ItemData.WOODEN_STICK.getItem());
+		inventoryService.addItem(player, ItemData.TATTERED_CLOTH.getItem());
+		inventoryService.addItem(player, ItemData.CLOTH_TUNIC.getItem());
+		inventoryService.addItem(player, ItemData.LEATHER_SANDALS.getItem());
+		inventoryService.addItem(player, ItemData.COPPER_RING.getItem());
 
 		// 기본 장비를 장착
 		player.getEquipmentManager().equip(weapon);

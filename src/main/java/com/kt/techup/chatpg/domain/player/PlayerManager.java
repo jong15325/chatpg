@@ -1,7 +1,10 @@
 package com.kt.techup.chatpg.domain.player;
 
+import org.springframework.stereotype.Component;
+
 import com.kt.techup.chatpg.helper.PrintHelper;
 
+@Component
 public class PlayerManager {
 
 	public void showStatus() {
