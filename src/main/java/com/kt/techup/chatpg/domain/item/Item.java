@@ -14,7 +14,7 @@ public class Item {
 	private final ItemTier itemTier; // common, rare, epic, legendary
 	private final int itemLevel;
 	private final String itemName;
-	private final int itemAttackBoost;
+	private final int attackBoost;
 	private final int defenseBoost;
 	private final int hpBoost;
 	private final int itemAmout;
