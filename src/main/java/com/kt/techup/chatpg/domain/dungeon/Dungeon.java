@@ -1,6 +1,6 @@
-package com.kt.techup.chatpg.dungeon;
+package com.kt.techup.chatpg.domain.dungeon;
 
-import com.kt.techup.chatpg.monster.MonsterManager;
+import com.kt.techup.chatpg.domain.dungeon.monster.MonsterManager;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,11 +1,11 @@
-package com.kt.techup.chatpg.monster;
+package com.kt.techup.chatpg.domain.dungeon.monster;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-public enum MonsterEnum {
+public enum MonsterData {
 
 	// 1레벨
 	EMBER_SERPENT("타오르는 뱀", 1, 28, 7, 2, 5),
