@@ -5,19 +5,14 @@ import java.util.Scanner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.kt.techup.chatpg.command.Command;
-import com.kt.techup.chatpg.command.CommandEnum;
-import com.kt.techup.chatpg.common.CommandRegistry;
 import com.kt.techup.chatpg.common.GameContext;
-import com.kt.techup.chatpg.domain.equipment.Equipment;
-import com.kt.techup.chatpg.domain.item.Item;
 import com.kt.techup.chatpg.domain.item.ItemData;
+import com.kt.techup.chatpg.helper.CommandHelper;
 import com.kt.techup.chatpg.helper.PrintHelper;
-import com.kt.techup.chatpg.domain.player.Equipment;
-import com.kt.techup.chatpg.domain.player.EquipmentEnum;
 import com.kt.techup.chatpg.domain.player.Player;
 import com.kt.techup.chatpg.service.EquipmentService;
 import com.kt.techup.chatpg.service.InventoryService;
+import com.kt.techup.chatpg.state.StateFactory;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,9 +20,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GameRunner implements CommandLineRunner {
 
-	private final CommandRegistry commandRegistry;
 	private final InventoryService inventoryService;
 	private final EquipmentService equipmentService;
+	private final StateFactory stateFactory;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -40,7 +35,7 @@ public class GameRunner implements CommandLineRunner {
 
 		// 플레이어 생성
 		Player player = new Player(playerName);
-		GameContext context = new GameContext(player, commandRegistry);
+		GameContext context = new GameContext(player, stateFactory);
 
 		// 기본 아이템 지급
 		inventoryService.addItem(player, ItemData.WOODEN_STICK.getItem());
@@ -50,42 +45,24 @@ public class GameRunner implements CommandLineRunner {
 		inventoryService.addItem(player, ItemData.COPPER_RING.getItem());
 
 		// 기본 장비를 장착
-		player.getEquipmentManager().equip(weapon);
+		/*player.getEquipmentManager().equip(weapon);
 		player.getEquipmentManager().equip(helmet);
 		player.getEquipmentManager().equip(armor);
 		player.getEquipmentManager().equip(boots);
-		player.getEquipmentManager().equip(accessory);
+		player.getEquipmentManager().equip(accessory);*/
 
 		boolean running = true;
 
 		PrintHelper.centerAlignPt("아래는 게임 메뉴에요");
 		PrintHelper.centerAlignPt("진행할 행동을 아래 보기처럼 입력해주세요");
 
-		String filterType = "main";
-		for (CommandEnum commandEnum : CommandEnum.values()) {
-			if (commandEnum.getType().equalsIgnoreCase(filterType)) {
-				PrintHelper.centerAlignPt(
-					"[ "+ commandEnum.getCommand() +" ] -> " +
-						commandEnum.getDescription()
-				);
-			}
-		}
+		CommandHelper.commandList("main");
 
 		PrintHelper.centerAlignPt("무엇을 진행할까요?: ");
 
 		while (true) {
-
 			String input = sc.nextLine();
-
-			// 커맨드로 직접 실행 가능한 커맨드들
-			Command cmd = commandRegistry.getCommand(input);
-			if (cmd != null) {
-				cmd.execute(player, context);
-			} else {
-				// 상태에서 명령 처리 (세부 입력)
-				context.getCurrentState().handleInput(input, context);
-			}
-
+			context.getCurrentState().handleInput(input, context);
 		}
 	}
 }
