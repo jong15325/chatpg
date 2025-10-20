@@ -3,12 +3,28 @@ package com.kt.techup.chatpg.state.main;
 import org.springframework.stereotype.Component;
 
 import com.kt.techup.chatpg.common.GameContext;
+import com.kt.techup.chatpg.helper.CommandHelper;
+import com.kt.techup.chatpg.service.InventoryService;
+import com.kt.techup.chatpg.service.MainService;
 import com.kt.techup.chatpg.state.GameState;
 import com.kt.techup.chatpg.state.StateEnum;
 import com.kt.techup.chatpg.state.StateFactory;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Component
 public class InventoryState implements GameState {
+
+	private final MainService mainService;
+	private final InventoryService inventoryService;
+
+	@Override
+	public void onEnter(GameContext context) {
+		inventoryService.welcomInventory();
+		inventoryService.showInventory(context.getPlayer());
+		CommandHelper.commandList("inventory");
+	}
 
 	@Override
 	public void handleInput(String input, GameContext context) {
@@ -41,13 +57,19 @@ public class InventoryState implements GameState {
 
 			}
 			//뒤로 가기
-			case "back" ->
-				context.changeState(StateEnum.MAIN);  // 간단!
+			case "back" -> {
+				context.changeState(StateEnum.MAIN);
+			}
 			case "exit" ->
 				System.exit(0);
 			default -> {
-				System.out.println("현재 가능 명령어 -> 'equip 아이템번호' / 'unequip 아이템번호' / 'back' / 'exit'");
+				CommandHelper.commandList("inventory");
 			}
 		}
+	}
+
+	@Override
+	public void onExit(GameContext gameContext) {
+		inventoryService.leaveInventory();
 	}
 }

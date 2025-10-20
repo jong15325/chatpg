@@ -12,6 +12,7 @@ import com.kt.techup.chatpg.helper.PrintHelper;
 import com.kt.techup.chatpg.domain.player.Player;
 import com.kt.techup.chatpg.service.EquipmentService;
 import com.kt.techup.chatpg.service.InventoryService;
+import com.kt.techup.chatpg.service.MainService;
 import com.kt.techup.chatpg.state.StateFactory;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GameRunner implements CommandLineRunner {
 
+	private final MainService mainService;
 	private final InventoryService inventoryService;
 	private final EquipmentService equipmentService;
 	private final StateFactory stateFactory;
@@ -52,13 +54,6 @@ public class GameRunner implements CommandLineRunner {
 		player.getEquipmentManager().equip(accessory);*/
 
 		boolean running = true;
-
-		PrintHelper.centerAlignPt("아래는 게임 메뉴에요");
-		PrintHelper.centerAlignPt("진행할 행동을 아래 보기처럼 입력해주세요");
-
-		CommandHelper.commandList("main");
-
-		PrintHelper.centerAlignPt("무엇을 진행할까요?: ");
 
 		while (true) {
 			String input = sc.nextLine();

@@ -7,6 +7,7 @@ import com.kt.techup.chatpg.common.GameContext;
 import com.kt.techup.chatpg.helper.CommandHelper;
 import com.kt.techup.chatpg.helper.PrintHelper;
 import com.kt.techup.chatpg.service.InventoryService;
+import com.kt.techup.chatpg.service.MainService;
 import com.kt.techup.chatpg.state.GameState;
 import com.kt.techup.chatpg.state.StateEnum;
 import com.kt.techup.chatpg.state.StateFactory;
@@ -18,17 +19,17 @@ import lombok.RequiredArgsConstructor;
 @Component
 public class MainState implements GameState {
 
-	private final InventoryService inventoryService;
+	private final MainService mainService;
+
+	@Override
+	public void onEnter(GameContext gameContext) {
+		mainService.welcomeMain();
+	}
 
 	@Override
 	public void handleInput(String input, GameContext context) {
 
 		System.out.println("MainState");
-
-		PrintHelper.centerAlignPt("아래는 게임 메뉴에요");
-		PrintHelper.centerAlignPt("진행할 행동을 아래 보기처럼 입력해주세요");
-
-		CommandHelper.commandList("main");
 
 		switch (input.toLowerCase()) {
 			case "info" ->
@@ -36,16 +37,19 @@ public class MainState implements GameState {
 			case "eq" ->
 				context.changeState(StateEnum.EQUIPMENT);  // 간단!
 			case "inventory" -> {
-				inventoryService.showInventory(context.getPlayer());
 				context.changeState(StateEnum.INVENTORY);
-				CommandHelper.commandList("inventory");
 			}
 			case "exit"  ->
 				System.exit(0);
 			default -> {
-				System.out.println("현재 가능 명령어 -> 'info' / 'eq' / 'inventory' / 'exit'");
+				CommandHelper.commandList("main");
 			}
 		}
+	}
+
+	@Override
+	public void onExit(GameContext gameContext) {
+		PrintHelper.centerAlignPt("메인 광장에서 이동합니다");
 	}
 
 }

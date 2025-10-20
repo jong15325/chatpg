@@ -12,10 +12,10 @@ import lombok.RequiredArgsConstructor;
 public class PlayerService {
 
 	public void showStatus() {
-		PrintHelper.centerAlignPt("[Lv." + level + "] "+ name);
+		/*PrintHelper.centerAlignPt("[Lv." + level + "] "+ name);
 		PrintHelper.centerAlignPt("[HP: " + hp + "]");
 		PrintHelper.centerAlignPt("[ATK: " + attack + "]");
-		PrintHelper.centerAlignPt("[DEF: " + defense + "]");
+		PrintHelper.centerAlignPt("[DEF: " + defense + "]");*/
 	}
 
 }

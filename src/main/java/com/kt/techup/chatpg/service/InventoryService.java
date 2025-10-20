@@ -12,6 +12,14 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class InventoryService {
 
+	public void welcomInventory() {
+		PrintHelper.centerAlignPt("내 빈털터리 가방 오픈!");
+	}
+
+	public void leaveInventory() {
+		PrintHelper.centerAlignPt("내 빈털터리 가방 닫기!");
+	}
+
 	// 인벤토리 리스트
 	public void showInventory(Player player) {
 		if (player.getInventory().getItems().isEmpty()) {

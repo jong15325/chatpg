@@ -23,30 +23,27 @@ public class GameContext {
 		this.player = player;
 		this.stateFactory = stateFactory;
 		this.currentState = stateFactory.getState(StateEnum.MAIN);
+		this.currentState.onEnter(this);
 	}
 
 	public void changeState(StateEnum stateType) {
 		GameState newState = stateFactory.getState(stateType);
+
+		// 같은 State로 전환 시도 시 무시
+		if (currentState == newState) {
+			return;
+		}
+
+		// 현재 State 종료 처리
 		if (currentState != null) {
+			currentState.onExit(this);
 			stateHistory.push(currentState);
 		}
+
+		// 새 State로 전환
 		this.currentState = newState;
+
+		// 새 State 진입 처리 (환영 메시지 등이 여기서 자동 실행!)
+		this.currentState.onEnter(this);
 	}
-
-	public void pushState(GameState state) {
-		if(currentState != state) {
-			stateHistory.push(state);
-		}
-
-		this.currentState = state;
-	}
-
-	public void popState() {
-		if(!stateHistory.isEmpty()) {
-			this.currentState = stateHistory.pop();
-		} else {
-			this.currentState = stateFactory.getState(StateEnum.MAIN);
-		}
-	}
-
 }
