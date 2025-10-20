@@ -15,9 +15,9 @@ public enum CommandEnum {
 	MAIN_EXIT("exit", "main", "종료", "게임을 종료합니다."),
 
 
-	INGAME_ATTACK("attack", "inGame", "공격","몬스터를 공격합니다."),
-	INGAME_DEFENSE("defense", "inGame", "방어", "방어 자세를 취합니다."),
-	INGAME_RUN("run", "inGame", "도망", "전투에서 도망칩니다."),
+	BATTLE_ATTACK("attack", "battle", "공격","몬스터를 공격합니다."),
+	BATTLE_DEFENSE("defense", "battle", "방어", "방어 자세를 취합니다."),
+	BATTLE_RUN("run", "battle", "도망", "전투에서 도망칩니다."),
 
 
 	INVENTORY_EQUIP("equip number", "inventory","장비 장착", "인벤토리의 아이템을 장착합니다 (equip 번호)"),
