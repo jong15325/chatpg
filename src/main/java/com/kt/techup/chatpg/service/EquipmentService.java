@@ -19,7 +19,7 @@ public class EquipmentService {
 		equipmentManager.showEquipped(player);
 	}
 
-	public void equip(Player player, Inventory inventory) {
-		equipmentManager.equip(player, inventory);
+	public void equip(Player player, int inventoryNumber) {
+		equipmentManager.equip(player, inventoryNumber);
 	}
 }

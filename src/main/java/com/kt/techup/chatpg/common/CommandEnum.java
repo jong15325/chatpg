@@ -1,0 +1,32 @@
+package com.kt.techup.chatpg.common;
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
+public enum CommandEnum {
+
+	//common
+	MAIN_SHOW_STATUS("info", "main", "내정보", "플레이어의 현재 상태를 보여줍니다."),
+	MAIN_SHOW_EQUIPPED("eq","main", "장비", "현재 장착된 장비를 보여줍니다."),
+	MAIN_SHOW_INVENTORY("inven","main", "인벤토리", "플레이어의 인벤토리를 보여줍니다."),
+	MAIN_DUNGEON("dungeon", "main", "던전","던전으로 이동합니다."),
+	MAIN_EXIT("exit", "main", "종료", "게임을 종료합니다."),
+
+
+	INGAME_ATTACK("attack", "inGame", "공격","몬스터를 공격합니다."),
+	INGAME_DEFENSE("defense", "inGame", "방어", "방어 자세를 취합니다."),
+	INGAME_RUN("run", "inGame", "도망", "전투에서 도망칩니다."),
+
+
+	INVENTORY_EQUIP("equip number", "inventory","장비 장착", "인벤토리의 아이템을 장착합니다 (equip 번호)"),
+	INVENTORY_UNEQUIP("unequip number", "inventory", "장비 해제", "인벤토리의 장착 아이템을 해제합니다 (unequip 번호)"),
+	INVENTORY_BACK("back", "inventory", "돌아가기", "이전으로 돌아갑니다"),
+
+	;
+	private final String command;
+	private final String type;
+	private final String commandName;
+	private final String description;
+}

@@ -12,7 +12,7 @@ public class PlayerService {
 	private final PlayerManager playerManager;
 
 	public void createPlayer() {
-		playerManager.createPlayer();
+		// playerManager.createPlayer();
 	}
 
 }
