@@ -2,14 +2,11 @@ package com.kt.techup.chatpg.domain.player;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.Map;
 
 import com.kt.techup.chatpg.domain.equipment.Equipment;
-import com.kt.techup.chatpg.domain.equipment.EquipmentManager;
 import com.kt.techup.chatpg.domain.equipment.EquipmentType;
 import com.kt.techup.chatpg.domain.inventory.Inventory;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

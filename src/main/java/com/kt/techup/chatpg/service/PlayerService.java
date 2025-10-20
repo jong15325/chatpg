@@ -2,17 +2,20 @@ package com.kt.techup.chatpg.service;
 
 import org.springframework.stereotype.Service;
 
-import com.kt.techup.chatpg.domain.player.PlayerManager;
+import com.kt.techup.chatpg.helper.PrintHelper;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
-@RequiredArgsConstructor
-public class PlayerService {
-	private final PlayerManager playerManager;
 
-	public void createPlayer() {
-		// playerManager.createPlayer();
+@RequiredArgsConstructor
+@Service
+public class PlayerService {
+
+	public void showStatus() {
+		PrintHelper.centerAlignPt("[Lv." + level + "] "+ name);
+		PrintHelper.centerAlignPt("[HP: " + hp + "]");
+		PrintHelper.centerAlignPt("[ATK: " + attack + "]");
+		PrintHelper.centerAlignPt("[DEF: " + defense + "]");
 	}
 
 }
