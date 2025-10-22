@@ -14,8 +14,6 @@ public abstract class Item {
 	private final int itemId;
 	private final ItemType itemType;
 	private final String itemName;
+	private final Stats stats;
 	private final String description;
-	
-	// 아이템이 제공하는 스탯 (장비/소비 아이템만 사용, 퀘스트/재료 아이템은 null)
-	private final Stats bonusStats;
 }

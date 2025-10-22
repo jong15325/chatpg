@@ -11,18 +11,13 @@ import lombok.Getter;
  */
 @Getter
 public class EquipmentItem extends Item {
-	private final EquipmentType equipmentType;
+	private final ItemTier tier;
+	private final int itemLevel;
 
-	public EquipmentItem(int itemId, ItemType itemType, EquipmentType equipmentType, String itemName,
-		int attackBoost, int defenseBoost, int hpBoost, int spBoost, String description) {
-		super(itemId, itemType, itemName, description, new Stats(hpBoost, spBoost, attackBoost, defenseBoost));
-		this.equipmentType = equipmentType;
-	}
-
-	/**
-	 * 특정 장비 슬롯에 장착 가능한지 확인합니다
-	 */
-	public boolean isEquippableAt(EquipmentType slot) {
-		return this.equipmentType == slot;
+	public EquipmentItem(int itemId, EquipmentType equipmentType, ItemTier tier, int itemLevel, String itemName,
+		Stats stats, String description) {
+		super(itemId, ItemType.EQUIPMENT, itemName, stats, description);
+		this.tier = tier;
+		this.itemLevel = itemLevel;
 	}
 }
