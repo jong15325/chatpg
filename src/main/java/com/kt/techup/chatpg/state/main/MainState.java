@@ -23,33 +23,29 @@ public class MainState implements GameState {
 
 	@Override
 	public void onEnter(GameContext gameContext) {
-		mainService.welcomeMain();
+		mainService.welcomeMsg();
 	}
 
 	@Override
 	public void handleInput(String input, GameContext context) {
 
-		System.out.println("MainState");
-
 		switch (input.toLowerCase()) {
-			case "info" ->
-				context.changeState(StateEnum.PLAYER_STATUS);  // 간단!
-			case "eq" ->
-				context.changeState(StateEnum.EQUIPMENT);  // 간단!
-			case "inventory" -> {
+			case "status" ->
+				context.changeState(StateEnum.PLAYER_STATUS);
+			case "equipment" ->
+				context.changeState(StateEnum.EQUIPMENT);
+			case "inventory" ->
 				context.changeState(StateEnum.INVENTORY);
-			}
 			case "exit"  ->
 				System.exit(0);
-			default -> {
+			default ->
 				CommandHelper.commandList("main");
-			}
 		}
 	}
 
 	@Override
 	public void onExit(GameContext gameContext) {
-		PrintHelper.centerAlignPt("메인 광장에서 이동합니다");
+		mainService.LeaveMsg();
 	}
 
 }

@@ -11,13 +11,18 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class MainService {
 
-	public void welcomeMain() {
+	public void welcomeMsg() {
 		PrintHelper.centerAlignPt("메인 광장에 입장했습니다");
 		PrintHelper.centerAlignPt("진행할 행동을 아래 보기처럼 입력해주세요");
 
 		CommandHelper.commandList("main");
 
 		PrintHelper.centerAlignPt("무엇을 진행할까요?");
+
+	}
+
+	public void LeaveMsg() {
+		PrintHelper.centerAlignPt("메인 광장에서 이동합니다");
 
 	}
 }
