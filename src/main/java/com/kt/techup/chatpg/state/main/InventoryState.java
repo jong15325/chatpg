@@ -21,55 +21,39 @@ public class InventoryState implements GameState {
 
 	@Override
 	public void onEnter(GameContext context) {
-		inventoryService.welcomInventory();
-		inventoryService.showInventory(context.getPlayer());
+		inventoryService.welcomeMsg();
+		inventoryService.showInventory(context.getPlayer().getInventory());
 		CommandHelper.commandList("inventory");
 	}
 
 	@Override
 	public void handleInput(String input, GameContext context) {
 
-		System.out.println("InventoryState");
-
-		// 명령어 분리
 		String[] parts = input.trim().split("\\s+");
 		String command = parts[0].toLowerCase();
 		
 		switch (command) {
 			//장비 장착
 			case "equip" -> {
-				if (parts.length < 2) {
-					System.out.println("장착 및 해제 명령어 -> equip 아이템번호 / unequip 아이템번호");
-					return;
-				}
-
-				//context.getPlayer().getEquipmentManager().equip(Integer.parseInt(parts[1]));
+				System.out.println("장착 및 해제 명령어 -> equip 아이템번호 / unequip 아이템번호");
 
 			}
 			//장비 해제
 			case "unequip" -> {
-				if (parts.length < 2) {
-					System.out.println("장착 및 해제 명령어 -> equip 아이템번호 / unequip 아이템번호");
-					return;
-				}
-
-				//context.getPlayer().getEquipmentManager().unequipBySlot(Integer.parseInt(parts[1]));
-
+				System.out.println("장착 및 해제 명령어 -> equip 아이템번호 / unequip 아이템번호");
 			}
 			//뒤로 가기
-			case "back" -> {
+			case "back" ->
 				context.changeState(StateEnum.MAIN);
-			}
 			case "exit" ->
 				System.exit(0);
-			default -> {
+			default ->
 				CommandHelper.commandList("inventory");
-			}
 		}
 	}
 
 	@Override
 	public void onExit(GameContext gameContext) {
-		inventoryService.leaveInventory();
+		inventoryService.leaveMsg();
 	}
 }

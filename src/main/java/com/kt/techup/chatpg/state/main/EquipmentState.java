@@ -2,40 +2,45 @@ package com.kt.techup.chatpg.state.main;
 
 import org.springframework.stereotype.Component;
 
+import com.kt.techup.chatpg.helper.CommandHelper;
+import com.kt.techup.chatpg.service.EquipmentService;
 import com.kt.techup.chatpg.state.GameState;
 import com.kt.techup.chatpg.common.GameContext;
 import com.kt.techup.chatpg.state.StateEnum;
 import com.kt.techup.chatpg.state.StateFactory;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Component
 public class EquipmentState implements GameState {
 
+	private final EquipmentService equipmentService;
+
 	@Override
 	public void onEnter(GameContext context) {
-
+		equipmentService.welcomMsg();
+		equipmentService.showEquipped(context.getPlayer());
+		CommandHelper.commandList("equipment");
 	}
 
 	@Override
 	public void handleInput(String input, GameContext context) {
-		// 장착 장비칸에서는 인벤토리로 이동 y/n 밖에 없다
-		System.out.println("EquipmentState");
 
 		switch (input.toLowerCase()) {
-			case "y" -> {
+			case "move" ->
 				context.changeState(StateEnum.INVENTORY);
-			}
-			case "n", "back" ->
+			case "back" ->
 				context.changeState(StateEnum.MAIN);
 			case "exit"  ->
 				System.exit(0);
-			default -> {
-				System.out.println("현재 가능 명령어 -> 'y' / 'n' / 'back' / 'exit'");
-			}
+			default ->
+				CommandHelper.commandList("equipment");
 		}
 	}
 
 	@Override
 	public void onExit(GameContext context) {
-
+		equipmentService.leaveMsg();
 	}
 }

@@ -7,4 +7,5 @@ public enum StateEnum {
 	EQUIPMENT,
 	EQUIP,
 	UNEQUIP,
+	EXIT,
 }
