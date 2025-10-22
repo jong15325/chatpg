@@ -40,11 +40,11 @@ public class GameRunner implements CommandLineRunner {
 		GameContext context = new GameContext(player, stateFactory);
 
 		// 기본 아이템 지급
-		inventoryService.addItem(player, ItemData.WOODEN_STICK.getItem());
-		inventoryService.addItem(player, ItemData.TATTERED_CLOTH.getItem());
-		inventoryService.addItem(player, ItemData.CLOTH_TUNIC.getItem());
-		inventoryService.addItem(player, ItemData.LEATHER_SANDALS.getItem());
-		inventoryService.addItem(player, ItemData.COPPER_RING.getItem());
+		player.getInventory().addItem(ItemData.WOODEN_STICK.getItem());
+		player.getInventory().addItem(ItemData.TATTERED_CLOTH.getItem());
+		player.getInventory().addItem(ItemData.CLOTH_TUNIC.getItem());
+		player.getInventory().addItem(ItemData.LEATHER_SANDALS.getItem());
+		player.getInventory().addItem(ItemData.COPPER_RING.getItem());
 
 		// 기본 장비를 장착
 		/*player.getEquipmentManager().equip(weapon);
