@@ -1,22 +1,21 @@
 package com.kt.techup.chatpg.domain.item;
 
-import com.kt.techup.chatpg.domain.equipment.EquipmentType;
-
+import com.kt.techup.chatpg.domain.player.Stats;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * 게임 아이템의 기본 정보를 담는 추상 클래스
+ * 모든 아이템은 이 클래스를 상속받아 구현됩니다
+ */
 @Getter
 @RequiredArgsConstructor
-public class Item {
+public abstract class Item {
 	private final int itemId;
 	private final ItemType itemType;
-	private final EquipmentType equipmentType;
-	private final ItemTier itemTier; // common, rare, epic, legendary
-	private final int itemLevel;
 	private final String itemName;
-	private final int attackBoost;
-	private final int defenseBoost;
-	private final int hpBoost;
-	private final int itemAmout;
 	private final String description;
+	
+	// 아이템이 제공하는 스탯 (장비/소비 아이템만 사용, 퀘스트/재료 아이템은 null)
+	private final Stats bonusStats;
 }
