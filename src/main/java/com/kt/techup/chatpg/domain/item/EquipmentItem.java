@@ -11,12 +11,14 @@ import lombok.Getter;
  */
 @Getter
 public class EquipmentItem extends Item {
+	private final EquipmentType equipmentType;
 	private final ItemTier tier;
 	private final int itemLevel;
 
 	public EquipmentItem(int itemId, EquipmentType equipmentType, ItemTier tier, int itemLevel, String itemName,
 		Stats stats, String description) {
 		super(itemId, ItemType.EQUIPMENT, itemName, stats, description);
+		this.equipmentType = equipmentType;
 		this.tier = tier;
 		this.itemLevel = itemLevel;
 	}

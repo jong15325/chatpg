@@ -5,7 +5,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.kt.techup.chatpg.domain.equipment.EquipmentType;
+import com.kt.techup.chatpg.domain.inventory.Inventory;
+import com.kt.techup.chatpg.domain.item.EquipmentItem;
 import com.kt.techup.chatpg.domain.item.Item;
+import com.kt.techup.chatpg.domain.item.ItemType;
 import com.kt.techup.chatpg.domain.player.Player;
 import com.kt.techup.chatpg.domain.player.Stats;
 import com.kt.techup.chatpg.helper.PrintHelper;
@@ -59,14 +62,50 @@ public class EquipmentService {
 
 		PrintHelper.centerAlignPt("장착된 장비 변경은 인벤토리에서 변경가능합니다");
 	}
-	
+
 	/**
-	 * 특정 부위에 장비가 장착되어 있는지 확인
+	 * 아이템 장착
 	 * @param player
-	 * @param equipmentType
-	 * @return 있으면 true 없으면 false
+	 * @param inventoryIdx
 	 */
-	public boolean isEquipped(Player player, EquipmentType equipmentType) {
-		return player.getEquipment().getEquippedItem(equipmentType, player.getInventory()).isPresent();
+	public void equipItem(Player player, int inventoryIdx) {
+		// 인벤토리에서 아이템 정보 조회
+		Inventory inventory = player.getInventory();
+		Optional<Item> itemOpt = inventory.getItemByIdx(inventoryIdx);
+
+		// 아이템 존재 여부 확인
+		if(itemOpt.isPresent()) {
+
+			Item item = itemOpt.get();
+
+			// 아이템이 장비인지 확인
+			if(item.getItemType() != ItemType.EQUIPMENT) {
+				PrintHelper.centerAlignPt("해당 아이템은 장비 아이템이 아닙니다.");
+				return;
+			}
+
+			// 어떤 부위인지 확인
+			EquipmentItem equipItem = (EquipmentItem) item;
+			EquipmentType slotType = equipItem.getEquipmentType();
+
+			// 해당 부위에 이미 장착된 아이템 확인
+			if(player.getEquipment().isEquippedByType(slotType)) {
+				Item equippedItem = player.getEquipment().getEquippedItem(slotType, inventory).get();
+
+				player.getEquipment().getEquippedIndex(slotType).ifPresent(equippedIdx -> {
+					// 기존 장비 해제
+					player.getEquipment().getEquippedItems().remove(slotType);
+					PrintHelper.centerAlignPt(equippedItem.getItemName() + " 장비를 해제했습니다.");
+				});
+			}
+
+			// 장착
+			player.getEquipment().getEquippedItems().put(slotType, inventoryIdx);
+			PrintHelper.centerAlignPt(item.getItemName() + " 장비를 장착했습니다.");
+
+		} else {
+			PrintHelper.centerAlignPt("인벤토리에 해당 아이템이 없습니다.");
+			return;
+		}
 	}
 }

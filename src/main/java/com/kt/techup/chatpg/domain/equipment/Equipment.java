@@ -38,4 +38,8 @@ public class Equipment {
 		return Optional.ofNullable(equippedItems.get(type))
 			.flatMap(inventory::getItemByIdx);
 	}
+
+	public boolean isEquippedByType(EquipmentType type) {
+		return equippedItems.containsKey(type);
+	}
 }
