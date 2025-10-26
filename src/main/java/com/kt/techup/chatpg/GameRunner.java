@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.kt.techup.chatpg.common.GameContext;
+import com.kt.techup.chatpg.domain.equipment.EquipmentType;
 import com.kt.techup.chatpg.domain.item.ItemData;
 import com.kt.techup.chatpg.helper.CommandHelper;
 import com.kt.techup.chatpg.helper.PrintHelper;
@@ -40,18 +41,18 @@ public class GameRunner implements CommandLineRunner {
 		GameContext context = new GameContext(player, stateFactory);
 
 		// 기본 아이템 지급
-		player.getInventory().addItem(ItemData.WOODEN_STICK.getItem());
-		player.getInventory().addItem(ItemData.TATTERED_CLOTH.getItem());
-		player.getInventory().addItem(ItemData.CLOTH_TUNIC.getItem());
-		player.getInventory().addItem(ItemData.LEATHER_SANDALS.getItem());
-		player.getInventory().addItem(ItemData.COPPER_RING.getItem());
+		int helmetId = player.getInventory().addItem(ItemData.TATTERED_CLOTH.getItem());
+		int weaponId = player.getInventory().addItem(ItemData.WOODEN_STICK.getItem());
+		int armorId = player.getInventory().addItem(ItemData.CLOTH_TUNIC.getItem());
+		int bootsId = player.getInventory().addItem(ItemData.LEATHER_SANDALS.getItem());
+		int accessoryId = player.getInventory().addItem(ItemData.COPPER_RING.getItem());
 
 		// 기본 장비를 장착
-		/*player.getEquipmentManager().equip(weapon);
-		player.getEquipmentManager().equip(helmet);
-		player.getEquipmentManager().equip(armor);
-		player.getEquipmentManager().equip(boots);
-		player.getEquipmentManager().equip(accessory);*/
+		/*player.getEquipment().equipItem(EquipmentType.HELMET, helmetId);
+		player.getEquipment().equipItem(EquipmentType.WEAPON, weaponId);
+		player.getEquipment().equipItem(EquipmentType.ARMOR, armorId);
+		player.getEquipment().equipItem(EquipmentType.BOOTS, bootsId);
+		player.getEquipment().equipItem(EquipmentType.ACCESSORY, accessoryId);*/
 
 		boolean running = true;
 

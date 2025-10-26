@@ -2,6 +2,7 @@ package com.kt.techup.chatpg.domain.player;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.HashMap;
 
 import com.kt.techup.chatpg.domain.equipment.Equipment;
 import com.kt.techup.chatpg.domain.equipment.EquipmentType;
@@ -24,8 +25,8 @@ public class Player {
 		this.playerLevel = 1;
 		this.playerExp = 0;
 		this.stats = new Stats(50, 20, 5, 1);
-		this.equipment = new Equipment();
-		this.inventory = new Inventory();
+		this.equipment = new Equipment(new EnumMap<>(EquipmentType.class));
+		this.inventory = new Inventory(new HashMap<>());
 	}
 
 }

@@ -63,15 +63,48 @@ public class EquipmentService {
 		PrintHelper.centerAlignPt("장착된 장비 변경은 인벤토리에서 변경가능합니다");
 	}
 
+
+	private Optional<EquipmentItem> validateInventoryItem(Player player, int inventoryId) {
+		Inventory inventory = player.getInventory();
+		Optional<Item> itemOpt = inventory.getItemByIdx(inventoryId);
+
+		//아이템 존재 여부 확인
+		if(itemOpt.isEmpty()) {
+			PrintHelper.centerAlignPt("인벤토리에 해당 아이템이 없습니다.");
+			return Optional.empty();
+		}
+
+		Item item = itemOpt.get();
+
+		// 장비 아이템인지 확인
+		if (item.getItemType() != ItemType.EQUIPMENT) {
+			PrintHelper.centerAlignPt("해당 아이템은 장비 아이템이 아닙니다.");
+			return Optional.empty();
+		}
+
+		return Optional.of((EquipmentItem) item);
+	}
+
+	// 이미 장착된 장비인지 확인 후 해제
+	public void checkUnEquipIfNeeded(Player player, EquipmentType slotType) {
+		player.getEquipment().getEquippedId(slotType).ifPresent(_inventoryId -> {
+			// 기존 장비 해제
+			player.getEquipment().unEquipItem(slotType);
+			PrintHelper.centerAlignPt(equippedItem.getItemName() + " 장비를 해제했습니다.");
+		});
+	}
+
+
+
 	/**
 	 * 아이템 장착
 	 * @param player
-	 * @param inventoryIdx
+	 * @param inventoryId
 	 */
-	public void equipItem(Player player, int inventoryIdx) {
+	public void equipItem(Player player, int inventoryId) {
 		// 인벤토리에서 아이템 정보 조회
 		Inventory inventory = player.getInventory();
-		Optional<Item> itemOpt = inventory.getItemByIdx(inventoryIdx);
+		Optional<Item> itemOpt = inventory.getItemByIdx(inventoryId);
 
 		// 아이템 존재 여부 확인
 		if(itemOpt.isPresent()) {
@@ -92,20 +125,23 @@ public class EquipmentService {
 			if(player.getEquipment().isEquippedByType(slotType)) {
 				Item equippedItem = player.getEquipment().getEquippedItem(slotType, inventory).get();
 
-				player.getEquipment().getEquippedIndex(slotType).ifPresent(equippedIdx -> {
+				player.getEquipment().getEquippedId(slotType).ifPresent(_inventoryId -> {
 					// 기존 장비 해제
-					player.getEquipment().getEquippedItems().remove(slotType);
+					player.getEquipment().unEquipItem(slotType);
 					PrintHelper.centerAlignPt(equippedItem.getItemName() + " 장비를 해제했습니다.");
 				});
 			}
 
 			// 장착
-			player.getEquipment().getEquippedItems().put(slotType, inventoryIdx);
+			player.getEquipment().equipItem(slotType, inventoryId);
 			PrintHelper.centerAlignPt(item.getItemName() + " 장비를 장착했습니다.");
 
 		} else {
 			PrintHelper.centerAlignPt("인벤토리에 해당 아이템이 없습니다.");
-			return;
 		}
+	}
+
+	public void unEquipItem(Player player, int inventoryId) {
+
 	}
 }

@@ -18,8 +18,8 @@ public enum CommandEnum {
 	BATTLE_DEFENSE("defense", "battle", "방어", "방어 자세를 취합니다."),
 	BATTLE_RUN("run", "battle", "도망", "전투에서 도망칩니다."),
 
-	INVENTORY_EQUIP("equip number", "inventory","장비 장착", "인벤토리의 아이템을 장착합니다 (equip 번호)"),
-	INVENTORY_UNEQUIP("unequip number", "inventory", "장비 해제", "인벤토리의 장착 아이템을 해제합니다 (unequip 번호)"),
+	INVENTORY_EQUIP("equip 아이템 번호", "inventory","장비 장착", "인벤토리의 아이템을 장착합니다 (equip 아이템 번호)"),
+	INVENTORY_UNEQUIP("unequip 아이템 번호", "inventory", "장비 해제", "인벤토리의 장착 아이템을 해제합니다 (unequip 아이템 번호)"),
 	INVENTORY_BACK("back", "inventory", "돌아가기", "이전으로 돌아갑니다"),
 
 	EQUIPMENT_MOVE_INVENTORY("move", "equipment", "인벤토리 이동", "인벤토리로 이동합니다"),

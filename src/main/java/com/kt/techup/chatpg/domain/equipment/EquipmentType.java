@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum EquipmentType {
 	NONE(0, "NONE"),
-	WEAPON(1, "무기"),
-	HELMET(2, "투구"),
+	HELMET(1, "투구"),
+	WEAPON(2, "무기"),
 	ARMOR(3, "갑옷"),
 	BOOTS(4, "신발"),
 	ACCESSORY(5, "장신구");
