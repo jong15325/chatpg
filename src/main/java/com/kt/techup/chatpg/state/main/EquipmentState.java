@@ -19,7 +19,7 @@ public class EquipmentState implements GameState {
 
 	@Override
 	public void onEnter(GameContext context) {
-		equipmentService.welcomMsg();
+		equipmentService.welcomeMsg();
 		equipmentService.showEquipped(context.getPlayer());
 		CommandHelper.commandList("equipment");
 	}

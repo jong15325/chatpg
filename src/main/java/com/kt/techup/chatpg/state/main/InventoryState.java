@@ -59,7 +59,7 @@ public class InventoryState implements GameState {
 
 				equipmentService.unEquipItem(context.getPlayer(), cmdNumber);
 				inventoryService.showInventory(context.getPlayer());
-				System.out.println("장착 및 해제 명령어 -> equip 아이템번호 / unequip 아이템번호");
+				CommandHelper.commandList("inventory");
 			}
 			//뒤로 가기
 			case "back" ->
