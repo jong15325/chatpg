@@ -7,5 +7,6 @@ public enum StateEnum {
 	EQUIPMENT,
 	EQUIP,
 	UNEQUIP,
+	DUNGEON,
 	EXIT,
 }

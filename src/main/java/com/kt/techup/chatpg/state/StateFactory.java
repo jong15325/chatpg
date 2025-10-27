@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
+import com.kt.techup.chatpg.state.main.DungeonState;
 import com.kt.techup.chatpg.state.main.EquipmentState;
 import com.kt.techup.chatpg.state.main.InventoryState;
 import com.kt.techup.chatpg.state.main.MainState;
@@ -20,6 +21,7 @@ public class StateFactory {
 	private final EquipmentState equipmentState;
 	private final InventoryState inventoryState;
 	private final PlayerStatusState playerStatusState;
+	private final DungeonState dungeonState;
 
 	public GameState getState(StateEnum type) {
 		return switch (type) {
@@ -27,6 +29,7 @@ public class StateFactory {
 			case INVENTORY -> inventoryState;
 			case EQUIPMENT -> equipmentState;
 			case PLAYER_STATUS -> playerStatusState;
+			case DUNGEON -> dungeonState;
 			default -> throw new IllegalArgumentException("등록되지 않은 상태 타입: " + type);
 		};
 	}

@@ -27,6 +27,7 @@ public enum CommandEnum {
 
 	PLAYER_STATUS_BACK("back", "playerStatus", "뒤로 이동", "이전 행동으로 이동합니다.")
 
+
 	;
 	private final String command;
 	private final String type;
