@@ -22,10 +22,10 @@ public class PlayerService {
 
 	public void showStatus(Player player) {
 		PrintHelper.centerAlignPt("[Lv." + player.getPlayerLevel() + "] "+ player.getPlayerName());
-		PrintHelper.centerAlignPt("[HP: " + player.getStats().getHp() + "]");
-		PrintHelper.centerAlignPt("[SP: " + player.getStats().getSp() + "]");
-		PrintHelper.centerAlignPt("[ATK: " + player.getStats().getAttack() + "]");
-		PrintHelper.centerAlignPt("[DEF: " + player.getStats().getDefense() + "]");
+		PrintHelper.centerAlignPt("[HP: " + player.getBaseStats().getHp() + " + ("+ player.getAddStats().getHp() +")]");
+		PrintHelper.centerAlignPt("[SP: " + player.getBaseStats().getSp() + " + ("+ player.getAddStats().getSp() +")]");
+		PrintHelper.centerAlignPt("[ATK: " + player.getBaseStats().getAttack() + " + ("+ player.getAddStats().getAttack() +")]");
+		PrintHelper.centerAlignPt("[DEF: " + player.getBaseStats().getDefense() + " + ("+ player.getAddStats().getDefense() +")]");
 	}
 
 }

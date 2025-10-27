@@ -21,7 +21,7 @@ public class Stats {
 	 * 다른 스탯을 현재 스탯에 더함
 	 * @param addStats
 	 */
-	public void addStats(Stats addStats) {
+	public void add(Stats addStats) {
 		this.hp += addStats.hp;
 		this.sp += addStats.sp;
 		this.attack += addStats.attack;
@@ -32,11 +32,25 @@ public class Stats {
 	 * 다른 스탯을 현재 스탯에서 뺌
 	 * @param subStats
 	 */
-	public void subtractStats(Stats subStats) {
+	public void sub(Stats subStats) {
 		this.hp -= subStats.hp;
 		this.sp -= subStats.sp;
 		this.attack -= subStats.attack;
 		this.defense -= subStats.defense;
+	}
+
+	/**
+	 * 스탯을 배율만큼 계산한다
+	 * @param multiplier
+	 * @return
+	 */
+	public Stats multiply(double multiplier) {
+		return new Stats(
+			(int) (this.hp * multiplier),
+			(int) (this.sp * multiplier),
+			(int) (this.attack * multiplier),
+			(int) (this.defense * multiplier)
+		);
 	}
 
 	/**

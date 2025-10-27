@@ -36,10 +36,6 @@ public class Equipment {
 			.flatMap(inventory::getItemByIdx);
 	}
 
-	public boolean isEquippedByType(EquipmentType type) {
-		return equippedItems.containsKey(type);
-	}
-
 	public void equipItem(EquipmentType type, int inventoryId) {
 		equippedItems.put(type, inventoryId);
 	}

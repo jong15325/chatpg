@@ -94,6 +94,7 @@ public class EquipmentService {
 		player.getEquipment().getEquippedItem(slotType, player.getInventory()).ifPresent(equippdItem -> {
 			// 기존 장비 해제
 			player.getEquipment().unEquipItem(slotType);
+			player.subStats((EquipmentItem) equippdItem);
 			PrintHelper.centerAlignPt(equippdItem.getItemName() + " 장비를 해제했습니다.");
 		});
 	}
@@ -116,6 +117,7 @@ public class EquipmentService {
 
 			// 아이템 장착
 			player.getEquipment().equipItem(slotType, inventoryId);
+			player.addStats(equipItem);
 			PrintHelper.centerAlignPt(equipItem.getItemName() + " 장비를 장착했습니다.");
 		});
 	}
