@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 public enum CommandEnum {
 
 	//common
-	MAIN_SHOW_STATUS("info", "main", "내정보", "플레이어의 현재 상태를 보여줍니다."),
+	MAIN_SHOW_STATUS("status", "main", "내정보", "플레이어의 현재 상태를 보여줍니다."),
 	MAIN_SHOW_EQUIPMENT("equipment","main", "장비", "현재 장착된 장비를 보여줍니다."),
 	MAIN_SHOW_INVENTORY("inventory","main", "인벤토리", "플레이어의 인벤토리를 보여줍니다."),
 	MAIN_DUNGEON("dungeon", "main", "던전","던전으로 이동합니다."),
@@ -24,6 +24,9 @@ public enum CommandEnum {
 
 	EQUIPMENT_MOVE_INVENTORY("move", "equipment", "인벤토리 이동", "인벤토리로 이동합니다"),
 	EQUIPMENT_BACK("back", "equipment", "뒤로 이동", "이전 행동으로 이동합니다"),
+
+	PLAYER_STATUS_BACK("back", "playerStatus", "뒤로 이동", "이전 행동으로 이동합니다.")
+
 	;
 	private final String command;
 	private final String type;
