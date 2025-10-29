@@ -22,6 +22,14 @@ public class Dungeon {
 	private boolean eliteDiscovered;
 	private final Random random;
 
+	public Dungeon() {
+		this.currentFloor = 1;
+		this.clearedFloors = 0;
+		this.normalMonsterDefeated = false;
+		this.eliteDiscovered = false;
+		this.random = new Random();
+	}
+
 	/**
 	 * 던전 층 입장 시 초기화
 	 */

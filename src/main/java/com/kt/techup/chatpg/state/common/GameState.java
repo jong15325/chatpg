@@ -1,4 +1,4 @@
-package com.kt.techup.chatpg.state;
+package com.kt.techup.chatpg.state.common;
 
 import com.kt.techup.chatpg.common.GameContext;
 

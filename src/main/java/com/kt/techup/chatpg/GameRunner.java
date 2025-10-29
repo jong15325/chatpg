@@ -6,15 +6,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.kt.techup.chatpg.common.GameContext;
-import com.kt.techup.chatpg.domain.equipment.EquipmentType;
 import com.kt.techup.chatpg.domain.item.ItemData;
-import com.kt.techup.chatpg.helper.CommandHelper;
 import com.kt.techup.chatpg.helper.PrintHelper;
 import com.kt.techup.chatpg.domain.player.Player;
 import com.kt.techup.chatpg.service.EquipmentService;
 import com.kt.techup.chatpg.service.InventoryService;
 import com.kt.techup.chatpg.service.MainService;
-import com.kt.techup.chatpg.state.StateFactory;
+import com.kt.techup.chatpg.state.common.StateFactory;
 
 import lombok.RequiredArgsConstructor;
 

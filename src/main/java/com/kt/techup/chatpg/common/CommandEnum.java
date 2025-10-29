@@ -27,6 +27,7 @@ public enum CommandEnum {
 
 	PLAYER_STATUS_BACK("back", "playerStatus", "뒤로 이동", "이전 행동으로 이동합니다."),
 
+	DUNGEON_CHALLENGE("challenge", "dungeon", "도전", "던전에 도전합니다."),
 	DUNGEON_BACK("back", "dungeon", "뒤로 이동", "이전 행동으로 이동합니다."),
 
 	;

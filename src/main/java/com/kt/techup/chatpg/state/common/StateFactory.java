@@ -1,15 +1,12 @@
-package com.kt.techup.chatpg.state;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.kt.techup.chatpg.state.common;
 
 import org.springframework.stereotype.Component;
 
-import com.kt.techup.chatpg.state.main.DungeonState;
-import com.kt.techup.chatpg.state.main.EquipmentState;
-import com.kt.techup.chatpg.state.main.InventoryState;
-import com.kt.techup.chatpg.state.main.MainState;
-import com.kt.techup.chatpg.state.main.PlayerStatusState;
+import com.kt.techup.chatpg.state.DungeonState;
+import com.kt.techup.chatpg.state.EquipmentState;
+import com.kt.techup.chatpg.state.InventoryState;
+import com.kt.techup.chatpg.state.MainState;
+import com.kt.techup.chatpg.state.PlayerStatusState;
 
 import lombok.RequiredArgsConstructor;
 

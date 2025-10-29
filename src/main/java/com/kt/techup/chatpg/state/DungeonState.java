@@ -1,12 +1,12 @@
-package com.kt.techup.chatpg.state.main;
+package com.kt.techup.chatpg.state;
 
 import org.springframework.stereotype.Component;
 
 import com.kt.techup.chatpg.common.GameContext;
 import com.kt.techup.chatpg.helper.CommandHelper;
 import com.kt.techup.chatpg.service.DungeonService;
-import com.kt.techup.chatpg.state.GameState;
-import com.kt.techup.chatpg.state.StateEnum;
+import com.kt.techup.chatpg.state.common.GameState;
+import com.kt.techup.chatpg.state.common.StateEnum;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,12 +19,15 @@ public class DungeonState implements GameState {
 	@Override
 	public void onEnter(GameContext context) {
 		dungeonService.welcomeMsg();
+		dungeonService.showAvailableMonsters(context.getDungeon().getCurrentFloor());
 		CommandHelper.commandList("dungeon");
 	}
 
 	@Override
 	public void handleInput(String input, GameContext context) {
 		switch (input.toLowerCase()) {
+			case "challenge" ->
+				context.changeState(StateEnum.BATTLE);
 			case "back" ->
 				context.changeState(StateEnum.MAIN);
 			case "exit"  ->

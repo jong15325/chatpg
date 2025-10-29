@@ -1,4 +1,4 @@
-package com.kt.techup.chatpg.state;
+package com.kt.techup.chatpg.state.common;
 
 public enum StateEnum {
 	MAIN,
@@ -8,5 +8,6 @@ public enum StateEnum {
 	EQUIP,
 	UNEQUIP,
 	DUNGEON,
+	BATTLE,
 	EXIT,
 }

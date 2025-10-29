@@ -54,4 +54,25 @@ public class Player {
 		addStats.sub(item.getStats());
 	}
 
+	/**
+	 * 받는 데미지
+	 * @param damage
+	 */
+	public int takeDamage(int damage) {
+
+	}
+
+	public boolean isDead() {
+		return currentStats.getHp() <= 0;
+	}
+
+	public boolean gainExp(int exp) {
+
+	}
+
+	public void resetCurrentStats() {
+		// 스탯 회복
+		// 사용 아이템 스탯 초기화
+	}
+
 }

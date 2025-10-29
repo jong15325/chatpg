@@ -1,16 +1,12 @@
-package com.kt.techup.chatpg.state.main;
+package com.kt.techup.chatpg.state;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.kt.techup.chatpg.common.GameContext;
 import com.kt.techup.chatpg.helper.CommandHelper;
-import com.kt.techup.chatpg.helper.PrintHelper;
-import com.kt.techup.chatpg.service.InventoryService;
 import com.kt.techup.chatpg.service.MainService;
-import com.kt.techup.chatpg.state.GameState;
-import com.kt.techup.chatpg.state.StateEnum;
-import com.kt.techup.chatpg.state.StateFactory;
+import com.kt.techup.chatpg.state.common.GameState;
+import com.kt.techup.chatpg.state.common.StateEnum;
 
 import lombok.RequiredArgsConstructor;
 

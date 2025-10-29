@@ -3,11 +3,11 @@ package com.kt.techup.chatpg.common;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import com.kt.techup.chatpg.state.GameState;
+import com.kt.techup.chatpg.domain.dungeon.Dungeon;
+import com.kt.techup.chatpg.state.common.GameState;
 import com.kt.techup.chatpg.domain.player.Player;
-import com.kt.techup.chatpg.state.StateEnum;
-import com.kt.techup.chatpg.state.StateFactory;
-import com.kt.techup.chatpg.state.main.MainState;
+import com.kt.techup.chatpg.state.common.StateEnum;
+import com.kt.techup.chatpg.state.common.StateFactory;
 
 import lombok.Data;
 
@@ -15,12 +15,14 @@ import lombok.Data;
 public class GameContext {
 
 	private final Player player;
+	private final Dungeon dungeon;
 	private GameState currentState;
 	private final Deque<GameState> stateHistory = new ArrayDeque<>();
 	private final StateFactory stateFactory;
 
 	public GameContext(Player player, StateFactory stateFactory) {
 		this.player = player;
+		this.dungeon = new Dungeon();
 		this.stateFactory = stateFactory;
 		this.currentState = stateFactory.getState(StateEnum.MAIN);
 		this.currentState.onEnter(this);
