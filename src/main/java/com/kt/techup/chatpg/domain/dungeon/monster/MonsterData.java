@@ -8,15 +8,17 @@ import lombok.RequiredArgsConstructor;
 public enum MonsterData {
 
 	// 1레벨
-	EMBER_SERPENT("타오르는 뱀", 1, 28, 7, 2, 5),
-	SHADOW_PRONGHORN("그림자 프롱혼", 1, 32, 6, 2, 6),
-	FROST_LARVA("서리 유충", 1, 33, 5, 3, 7),
+	EMBER_SERPENT("타오르는 뱀", 1, 28, 7, 2, 5, 1, 4),
+	SHADOW_PRONGHORN("그림자 프롱혼", 1, 32, 6, 2, 6, 1, 4),
+	FROST_LARVA("서리 유충", 1, 33, 5, 3, 7, 1, 4),
+
 	// 2레벨
-	DAWN_GOBLIN("여명의 고블린", 2, 37, 8, 3, 8),
-	VINE_BAT("덩굴 박쥐", 2, 36, 8, 2, 8),
-	GLASS_BEETLE("유리 딱정벌레", 2, 34, 9, 3, 9),
+	DAWN_GOBLIN("여명의 고블린", 2, 37, 8, 3, 8, 3, 4),
+	VINE_BAT("덩굴 박쥐", 2, 36, 8, 2, 8, 3, 4),
+	GLASS_BEETLE("유리 딱정벌레", 2, 34, 9, 3, 9, 3, 4),
+
 	// 3레벨
-	CRIMSON_WOLF("진홍의 늑대", 3, 45, 11, 5, 12),
+	/*CRIMSON_WOLF("진홍의 늑대", 3, 45, 11, 5, 12),
 	SILENT_SCORPION("침묵의 전갈", 3, 43, 10, 3, 13),
 	GLACIAL_SKELETON("빙결 해골", 3, 47, 11, 4, 13),
 	// 4레벨
@@ -46,7 +48,9 @@ public enum MonsterData {
 	// 10레벨
 	CELESTIAL_DRAGON("천상의 드래곤", 10, 225, 39, 19, 130),
 	PRIMORDIAL_HYDRA("태초의 히드라", 10, 210, 38, 20, 120),
-	RADIANT_PHOENIX("광휘의 피닉스", 10, 198, 36, 18, 110);
+	RADIANT_PHOENIX("광휘의 피닉스", 10, 198, 36, 18, 110);*/
+
+	;
 
 	private final String name;
 	private final int level;
@@ -54,4 +58,16 @@ public enum MonsterData {
 	private final int attack;
 	private final int defense;
 	private final int expReward;
+	private final int minFloor;
+	private final int maxFloor;
+
+	/**
+	 * 출현 가능한 몬스터인지 확인
+	 * @param floor
+	 * @return 현재 층이 최소와 최대층 사이에서 출현 가능한 몬스터인지 여부 반환
+	 */
+	public boolean canSpawnAt(int floor) {
+		return floor >= minFloor && floor <= maxFloor;
+	}
+	
 }

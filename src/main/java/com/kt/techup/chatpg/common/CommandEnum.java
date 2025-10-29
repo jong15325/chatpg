@@ -25,8 +25,9 @@ public enum CommandEnum {
 	EQUIPMENT_MOVE_INVENTORY("move", "equipment", "인벤토리 이동", "인벤토리로 이동합니다"),
 	EQUIPMENT_BACK("back", "equipment", "뒤로 이동", "이전 행동으로 이동합니다"),
 
-	PLAYER_STATUS_BACK("back", "playerStatus", "뒤로 이동", "이전 행동으로 이동합니다.")
+	PLAYER_STATUS_BACK("back", "playerStatus", "뒤로 이동", "이전 행동으로 이동합니다."),
 
+	DUNGEON_BACK("back", "dungeon", "뒤로 이동", "이전 행동으로 이동합니다."),
 
 	;
 	private final String command;

@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum DungeonRoomType {
 	NORMAL("일반 방", "몬스터가 출현합니다"),
-	ELITE("정예 방", "강력한 몬스터가 출현합니다 (보상 2배)"),
+	ELITE("정예 방", "강력한 몬스터가 출현합니다"),
 	BOSS("보스 방", "보스 몬스터가 출현합니다"),
 	TREASURE("보물 방", "아이템을 획득할 수 있습니다"),
 	REST("휴식 방", "HP/SP를 회복할 수 있습니다"),

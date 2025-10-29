@@ -36,6 +36,8 @@ public class MainState implements GameState {
 				context.changeState(StateEnum.EQUIPMENT);
 			case "inventory" ->
 				context.changeState(StateEnum.INVENTORY);
+			case "dungeon" ->
+				context.changeState(StateEnum.DUNGEON);
 			case "exit"  ->
 				System.exit(0);
 			default ->

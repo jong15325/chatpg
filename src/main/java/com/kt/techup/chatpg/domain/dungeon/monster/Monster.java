@@ -8,18 +8,18 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public class Monster {
 
-	private final MonsterData type;
+	private final MonsterData monster;
 	private final MonsterRank rank;
 	private final Stats baseStats;
 	private final Stats totalStats;
 	private Stats currentStats;
 
-	public Monster(MonsterData type) {
-		this(type, MonsterRank.NORMAL);
+	public Monster(MonsterData monster) {
+		this(monster, MonsterRank.NORMAL);
 	}
 
 	public Monster(MonsterData type, MonsterRank rank) {
-		this.type = type;
+		this.monster = type;
 		this.rank = rank;
 		this.baseStats = new Stats(
 			type.getHp(),
@@ -51,7 +51,7 @@ public class Monster {
 	 * @return 몬스터 랭크에 따른 경험치 반환
 	 */
 	public int getExpReward() {
-		return (int) (type.getExpReward() * rank.getRewardMultiplier() * 1.0);
+		return (int) (monster.getExpReward() * rank.getRewardMultiplier() * 1.0);
 	}
 
 	/**
@@ -65,8 +65,8 @@ public class Monster {
 		this.currentStats = new Stats(
 			Math.max(0, this.currentStats.getHp() - actualDamage),
 			0,
-			type.getAttack(),
-			type.getDefense()
+			monster.getAttack(),
+			monster.getDefense()
 		);
 		return beforeHp - this.getCurrentStats().getHp();  // 실제 받은 데미지 반환
 	}
