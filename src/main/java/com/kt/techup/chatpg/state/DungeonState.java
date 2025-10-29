@@ -38,7 +38,10 @@ public class DungeonState implements GameState {
 	}
 
 	@Override
-	public void onExit(GameContext context) {
-		dungeonService.leaveMsg();
+	public void onExit(GameContext context) {/*
+		System.out.println("dddd : " + context.getNextState().name());*/
+		if (context.getNextState() != StateEnum.BATTLE) {
+			dungeonService.leaveMsg();
+		}
 	}
 }

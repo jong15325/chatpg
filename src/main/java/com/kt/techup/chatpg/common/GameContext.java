@@ -19,6 +19,7 @@ public class GameContext {
 	private GameState currentState;
 	private final Deque<GameState> stateHistory = new ArrayDeque<>();
 	private final StateFactory stateFactory;
+	private StateEnum nextState;
 
 	public GameContext(Player player, StateFactory stateFactory) {
 		this.player = player;
@@ -36,6 +37,8 @@ public class GameContext {
 			return;
 		}
 
+		this.nextState = stateType;
+
 		// 현재 State 종료 처리
 		if (currentState != null) {
 			currentState.onExit(this);
@@ -47,5 +50,7 @@ public class GameContext {
 
 		// 새 State 진입 처리 (환영 메시지 등이 여기서 자동 실행!)
 		this.currentState.onEnter(this);
+
+		this.nextState = null;
 	}
 }

@@ -90,6 +90,7 @@ public class Dungeon {
 	 * @return 출현 몬스터 반환
 	 */
 	public Monster spawnMonster(MonsterRank rank) {
+
 		// 몬스터 결정
 		MonsterData monster = MonsterSpawnHelper.selectMonster(currentFloor);
 

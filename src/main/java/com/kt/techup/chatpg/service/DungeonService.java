@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.kt.techup.chatpg.domain.dungeon.Dungeon;
 import com.kt.techup.chatpg.domain.dungeon.monster.Monster;
 import com.kt.techup.chatpg.domain.dungeon.monster.MonsterData;
 import com.kt.techup.chatpg.helper.MonsterSpawnHelper;
@@ -63,5 +64,10 @@ public class DungeonService {
 				}
 			}
 		}
+	}
+
+	public void enterFloor(Dungeon dungeon) {
+		PrintHelper.centerAlignPt("던전 입장 및 몬스터 출현");
+
 	}
 }

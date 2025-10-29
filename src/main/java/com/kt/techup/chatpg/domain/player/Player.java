@@ -59,7 +59,7 @@ public class Player {
 	 * @param damage
 	 */
 	public int takeDamage(int damage) {
-
+		return 0;
 	}
 
 	public boolean isDead() {
@@ -67,7 +67,7 @@ public class Player {
 	}
 
 	public boolean gainExp(int exp) {
-
+		return false;
 	}
 
 	public void resetCurrentStats() {
