@@ -40,7 +40,7 @@ public class BattleState implements GameState {
 	}
 
 	@Override
-	public void handleInput(String input, GameContext context) {
+	public void handleInput(String input, GameContext context) throws InterruptedException {
 		switch (input.toLowerCase()) {
 			case "attack" -> {
 				battleService.processPlayerAttack(context.getPlayer(), monster);
