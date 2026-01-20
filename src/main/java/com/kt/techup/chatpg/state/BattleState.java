@@ -3,6 +3,7 @@ package com.kt.techup.chatpg.state;
 import org.springframework.stereotype.Component;
 
 import com.kt.techup.chatpg.common.GameContext;
+import com.kt.techup.chatpg.domain.battle.Battle;
 import com.kt.techup.chatpg.domain.dungeon.monster.Monster;
 import com.kt.techup.chatpg.domain.dungeon.monster.MonsterRank;
 import com.kt.techup.chatpg.helper.CommandHelper;
@@ -29,13 +30,19 @@ import lombok.RequiredArgsConstructor;
 public class BattleState implements GameState {
 
 	private final BattleService battleService;
-	private Monster monster;
 
 	@Override
 	public void onEnter(GameContext context) {
 		battleService.welcomeMsg();
-		monster = context.getDungeon().spawnMonster(MonsterRank.NORMAL);
-		battleService.battleStart(context.getPlayer(), monster);
+
+		Monster monster = context.getDungeon().spawnMonster(MonsterRank.NORMAL);
+
+		Battle battle = new Battle(context.getPlayer(), monster);
+
+		context.startBattle(battle);
+
+		battleService.battleStart(battle);
+
 		CommandHelper.commandList("battle");
 	}
 

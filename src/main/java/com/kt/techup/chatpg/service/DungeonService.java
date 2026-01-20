@@ -34,7 +34,6 @@ public class DungeonService {
 		PrintHelper.centerAlignPt("던전 나가기!");
 	}
 
-
 	public void showAvailableMonsters(int currentFloor) {
 		PrintHelper.centerAlignPt("========================================");
 		PrintHelper.centerAlignPt(String.format("         %d층 던전 정보", currentFloor));
@@ -68,6 +67,5 @@ public class DungeonService {
 
 	public void enterFloor(Dungeon dungeon) {
 		PrintHelper.centerAlignPt("던전 입장 및 몬스터 출현");
-
 	}
 }
