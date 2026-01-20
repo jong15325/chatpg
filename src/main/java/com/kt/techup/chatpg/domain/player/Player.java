@@ -23,7 +23,6 @@ public class Player {
 	private final Stats baseStats; // 기본 스탯
 	private final Stats addStats; // 장비/소비 추가 스탯
 	private final Stats currentStats; // 현재 스탯
-	private List<Effect> effects; // 효과 적용
 	private final Equipment equipment;
 	private final Inventory inventory;
 

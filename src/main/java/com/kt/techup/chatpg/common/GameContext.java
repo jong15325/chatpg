@@ -3,6 +3,7 @@ package com.kt.techup.chatpg.common;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+import com.kt.techup.chatpg.domain.battle.Battle;
 import com.kt.techup.chatpg.domain.dungeon.Dungeon;
 import com.kt.techup.chatpg.state.common.GameState;
 import com.kt.techup.chatpg.domain.player.Player;
@@ -10,23 +11,31 @@ import com.kt.techup.chatpg.state.common.StateEnum;
 import com.kt.techup.chatpg.state.common.StateFactory;
 
 import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 public class GameContext {
 
 	private final Player player;
-	private final Dungeon dungeon;
-	private GameState currentState;
-	private final Deque<GameState> stateHistory = new ArrayDeque<>();
 	private final StateFactory stateFactory;
+	private final Dungeon dungeon;
+	private Battle battle;
+	private GameState currentState;
 	private StateEnum nextState;
+
+	private final Deque<GameState> stateHistory = new ArrayDeque<>();
 
 	public GameContext(Player player, StateFactory stateFactory) {
 		this.player = player;
-		this.dungeon = new Dungeon();
 		this.stateFactory = stateFactory;
+		this.dungeon = new Dungeon();
+		this.battle = null;
 		this.currentState = stateFactory.getState(StateEnum.MAIN);
 		this.currentState.onEnter(this);
+	}
+
+	public void startBattle(Battle battle) {
+		this.battle = battle;
 	}
 
 	public void changeState(StateEnum stateType) {
